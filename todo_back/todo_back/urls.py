@@ -20,10 +20,10 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/', views.index, name='index'),
     path('api/task_lists', views.TaskListsView.as_view()),
     path('api/task_lists/<int:task_list_id>', views.TaskListView.as_view()),
     path('api/task_lists/<int:task_list_id>/tasks', views.TaskListViewTasks.as_view()),
+    path('api/tasks/<int:task_id>', views.TaskView.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

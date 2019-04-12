@@ -36,6 +36,7 @@ class TaskListViewTasks(APIView):
         task_lists = TaskList.objects.all()
         serializer = TaskListSerializer(task_lists, many=True)
         holder = ''
+        result = []
 
         tasks = Task.objects.all()
         tasks_serializer = TaskSerializer(tasks, many=True)
@@ -46,14 +47,21 @@ class TaskListViewTasks(APIView):
 
         for task in tasks_serializer.data:
             if holder['id'] == task['task_list']:
-                return Response(task)
+                result.append(task)
+        
+        return Response(result)
                 
 
 class TaskView(APIView):
-    def get(self, request):
+    def get(self, request, task_id):
         tasks = Task.objects.all()
         serializer = TaskSerializer(tasks, many=True)
-        return Response(serializer.data)
+        
+        for task in serializer.data:
+            if task_id == task['id']:
+                return Response(task)
+
+        return Response("empty!")
 
     def post(self):
         pass
