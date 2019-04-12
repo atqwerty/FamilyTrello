@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from api import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', views.index, name='index'),
-    path('api/tasl_list', views.task_list, name='list')
+    # path('api/', views.index, name='index'),
+    path('api/task_lists', views.TaskListsView.as_view()),
+    path('api/task_lists/<int:task_list_id>', views.TaskListView.as_view()),
+    path('api/task_lists/<int:task_list_id>/tasks', views.TaskListViewTasks.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
