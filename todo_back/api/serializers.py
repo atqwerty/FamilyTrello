@@ -4,7 +4,6 @@ from .models import TaskList, Task
 class TaskListSerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskList
-        # fields = ("name")
         fields = '__all__'
 
 class TaskSerializer(serializers.ModelSerializer):

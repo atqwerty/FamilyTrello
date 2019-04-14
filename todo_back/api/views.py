@@ -2,20 +2,24 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 from .models import TaskList, Task
 from .serializers import TaskListSerializer, TaskSerializer
 
 # Create your views here.
 
-class TaskListsView(APIView):
-    def get(self, request):
-        task_list = TaskList.objects.all()
-        serializer = TaskListSerializer(task_list, many=True)
-        return Response(serializer.data)
+class TaskListsView(viewsets.ModelViewSet):
+    # def get(self, request):
+    queryset = TaskList.objects.all()
+    serializer_class = TaskListSerializer
 
-    def post(self):
-        pass
+    # @classmethod
+    # def get_extra_actions(cls):
+    #     return []
+        # return Response(serializer.data)
+
+    # def post(self):
+    #     pass
 
 class TaskListView(APIView):
     def get(self, request, task_list_id):
@@ -50,7 +54,6 @@ class TaskListViewTasks(APIView):
                 result.append(task)
         
         return Response(result)
-                
 
 class TaskView(APIView):
     def get(self, request, task_id):
