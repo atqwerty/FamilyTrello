@@ -15,4 +15,13 @@ export class ApiService {
   getAllTaskLists(): Observable<any>{
     return this.http.get(this.baseurl + "/task_lists/", { headers : this.httpHeaders });
   }
+
+  getTaskList(id: string): Observable<any>{
+    console.log(id);
+    return this.http.get(this.baseurl + "/task_lists/" + id)
+  }
+
+  getTasks(id: string): Observable<any>{
+    return this.http.get(this.baseurl + "/task_lists/" + id + "/tasks")
+  }
 }

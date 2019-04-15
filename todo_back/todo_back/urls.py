@@ -22,14 +22,15 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'api/task_lists', views.TaskListsView, basename='TaskLists')
+# router.register(r'api/task_list/<int:task_list_id>', views.TaskListView, basename="TaskList")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace  = 'rest_framework')),
     # path('api/task_lists', views.TaskListsView.as_view()),
-    # path('api/task_lists/<int:task_list_id>', views.TaskListView.as_view()),
-    # path('api/task_lists/<int:task_list_id>/tasks', views.TaskListViewTasks.as_view()),
+    path('api/task_lists/<int:task_list_id>', views.TaskListView.as_view()),
+    path('api/task_lists/<int:task_list_id>/tasks', views.TaskListViewTasks.as_view()),
     # path('api/tasks/<int:task_id>', views.TaskView.as_view())
 ]
 
