@@ -7,6 +7,11 @@ import { ApiService } from '../api.service';
   styleUrls: ['./main.component.css'],
   providers: [ApiService]
 })
+
+// export interface ITaskList {
+//   id: number;
+//   name: string;
+// }
 export class MainComponent implements OnInit {
 
   ngOnInit() {
@@ -22,7 +27,8 @@ export class MainComponent implements OnInit {
 
     this.api.getAllTaskLists().subscribe(
       data =>{
-        this.task_lists = data
+        this.task_lists = data;
+        
       },
       error => {
         console.log(error);

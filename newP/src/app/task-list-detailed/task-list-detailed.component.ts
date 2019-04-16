@@ -24,7 +24,7 @@ export class TaskListDetailedComponent implements OnInit {
       }
     });
     this.getTaskList(this.id);
-}
+  }
 
   task_list = [{name: "testName"}];
   tasks = [];

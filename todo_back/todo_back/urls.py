@@ -31,7 +31,7 @@ urlpatterns = [
     # path('api/task_lists', views.TaskListsView.as_view()),
     path('api/task_lists/<int:task_list_id>', views.TaskListView.as_view()),
     path('api/task_lists/<int:task_list_id>/tasks', views.TaskListViewTasks.as_view()),
-    # path('api/tasks/<int:task_id>', views.TaskView.as_view())
+    path('api/task_lists/<int:task_list_id>/tasks/<int:task_id>', views.TaskView.as_view())
 ]
 
 # urlpatterns = format_suffix_patterns(urlpatterns)

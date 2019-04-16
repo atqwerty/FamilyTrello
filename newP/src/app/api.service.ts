@@ -24,4 +24,8 @@ export class ApiService {
   getTasks(id: string): Observable<any>{
     return this.http.get(this.baseurl + "/task_lists/" + id + "/tasks")
   }
+
+  getTaskInfo(task_list_id: string, task_id: string): Observable<any>{
+    return this.http.get(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id)
+  }
 }
