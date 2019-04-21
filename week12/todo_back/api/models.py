@@ -5,6 +5,11 @@ from django.db import models
 class TaskList(models.Model):
     name = models.CharField(max_length = 200)
 
+    @classmethod
+    def create(cls, name):
+        task_list = cls(name = name)
+        return task_list
+
 class Task(models.Model):
     name = models.CharField(max_length = 200)
     created_at = models.DateTimeField('date created at')

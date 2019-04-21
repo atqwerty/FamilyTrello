@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { TaskListDetailedComponent } from './task-list-detailed/task-list-detailed.component';
 import { TaskDetailedComponent } from './task-detailed/task-detailed.component';
+import { NewTaskListComponent } from './new-task-list/new-task-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     TaskListDetailedComponent,
-    TaskDetailedComponent
+    TaskDetailedComponent,
+    NewTaskListComponent
   ],
   imports: [
     BrowserModule,

@@ -4,4 +4,5 @@
     <h2 routerLink="{{task_list.id}}" queryParamsHandling="merge">{{task_list.name}}</h2>
     <router-outlet></router-outlet>
   </li>
+  <input value="New TaskList" type="button" (click) = "create()" />
 </ul>

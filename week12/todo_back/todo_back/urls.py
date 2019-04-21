@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace  = 'rest_framework')),
-    # path('api/task_lists', views.TaskListsView.as_view()),
+    path('api/new_task_list/', views.NewTaskList.as_view()),
     path('api/task_lists/<int:task_list_id>', views.TaskListView.as_view()),
     path('api/task_lists/<int:task_list_id>/tasks', views.TaskListViewTasks.as_view()),
     path('api/task_lists/<int:task_list_id>/tasks/<int:task_id>', views.TaskView.as_view())

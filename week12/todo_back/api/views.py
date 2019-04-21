@@ -8,6 +8,18 @@ from .serializers import TaskListSerializer, TaskSerializer
 
 # Create your views here.
 
+class NewTaskList(APIView):
+    # def get(self, request):
+    #     # data = 
+    #     # task_list = TaskList.create(name)
+    #     # serializer.save(task_list)
+    #     # return Response(request.data)
+    #     pass
+
+    def post(self, request):
+        return Response(request.data)
+        # pass
+
 class TaskListsView(viewsets.ModelViewSet):
     # def get(self, request):
     queryset = TaskList.objects.all()
@@ -56,12 +68,12 @@ class TaskListViewTasks(APIView):
         return Response(result)
 
 class TaskView(APIView):
-    def get(self, request, task_id):
+    def get(self, request, task_list_id, task_id):
         tasks = Task.objects.all()
         serializer = TaskSerializer(tasks, many=True)
         
         for task in serializer.data:
-            if task_id == task['id']:
+            if task_id == task['id'] and task_list_id == task['task_list']:
                 return Response(task)
 
         return Response("empty!")

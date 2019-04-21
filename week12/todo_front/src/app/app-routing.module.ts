@@ -4,8 +4,10 @@ import { MainComponent } from './main/main.component';
 import { AppComponent } from './app.component';
 import { TaskListDetailedComponent } from './task-list-detailed/task-list-detailed.component';
 import { TaskDetailedComponent } from './task-detailed/task-detailed.component';
+import { NewTaskListComponent } from './new-task-list/new-task-list.component';
 
 const routes: Routes = [
+  { path: 'api/new_task_list', component: NewTaskListComponent, pathMatch: 'full' },
   { path: 'api/task_lists', component: MainComponent },
   { path: 'api/task_lists/:id', component: TaskListDetailedComponent, pathMatch: 'full' },
   // { path: 'api/task_lists/:id/tasks', component: TaskListDetailedComponent, pathMatch: 'full'},

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +20,7 @@ export class MainComponent implements OnInit {
 
   task_lists = [{name: "testName"}];
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private router: Router) {
     this.getAllTaskLists();
   }
 
@@ -36,4 +37,7 @@ export class MainComponent implements OnInit {
     )
   }
 
+  create(){
+    this.router.navigate(["api/new_task_list"]);
+  }
 }
