@@ -5,33 +5,24 @@ from rest_framework.response import Response
 from rest_framework import status, viewsets
 from .models import TaskList, Task
 from .serializers import TaskListSerializer, TaskSerializer
+from django.core.serializers import serialize
 
 # Create your views here.
 
 class NewTaskList(APIView):
-    # def get(self, request):
-    #     # data = 
-    #     # task_list = TaskList.create(name)
-    #     # serializer.save(task_list)
-    #     # return Response(request.data)
-    #     pass
-
     def post(self, request):
+        data = TaskList.objects.create(name = request.data)
+        return Response("")
+
+class NewTask(APIView):
+    def post(self, request):
+        # data = Task.objects.create(name = request.data.get("name"), 
+            # created_at = request.data["created_at"], due_to = request.data.get("due_to"), status = request.data.get("status"))
         return Response(request.data)
-        # pass
 
 class TaskListsView(viewsets.ModelViewSet):
-    # def get(self, request):
     queryset = TaskList.objects.all()
     serializer_class = TaskListSerializer
-
-    # @classmethod
-    # def get_extra_actions(cls):
-    #     return []
-        # return Response(serializer.data)
-
-    # def post(self):
-    #     pass
 
 class TaskListView(APIView):
     def get(self, request, task_list_id):

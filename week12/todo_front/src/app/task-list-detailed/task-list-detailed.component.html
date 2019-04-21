@@ -4,4 +4,5 @@
   <li *ngFor="let task of tasks">
     <h2 routerLink="tasks/{{task.id}}" queryParamsHandling="merge">{{task.name}}</h2>
   </li>
+  <input value="New Task" type="button" (click) = "create()" />
 </ul>

@@ -10,7 +10,9 @@ import { ApiService } from '../api.service';
 export class NewTaskListComponent implements OnInit {
 
   name: string;
+
   constructor(private api: ApiService, private router: Router) { }
+  
   ngOnInit() {
   }
 

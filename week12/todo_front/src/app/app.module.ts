@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { TaskListDetailedComponent } from './task-list-detailed/task-list-detailed.component';
 import { TaskDetailedComponent } from './task-detailed/task-detailed.component';
 import { NewTaskListComponent } from './new-task-list/new-task-list.component';
+import { NewTaskComponent } from './new-task/new-task.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NewTaskListComponent } from './new-task-list/new-task-list.component';
     MainComponent,
     TaskListDetailedComponent,
     TaskDetailedComponent,
-    NewTaskListComponent
+    NewTaskListComponent,
+    NewTaskComponent
   ],
   imports: [
     BrowserModule,

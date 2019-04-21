@@ -10,7 +10,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class TaskListDetailedComponent implements OnInit {
   id: string;
 
-  constructor(private api: ApiService, private activatedRoute: ActivatedRoute) {
+  constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
   
   ngOnInit() {
@@ -53,5 +53,7 @@ export class TaskListDetailedComponent implements OnInit {
     )
   }
 
-
+  create(){
+    this.router.navigate(["api/new_task/"]);
+  }
 }

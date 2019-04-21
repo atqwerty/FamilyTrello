@@ -1,0 +1,14 @@
+<h2>New Task!</h2>
+<label>Name: 
+  <input type="text" (input)="name=$event.target.value" />
+</label><br>
+<label> Created at:
+  <input type="datetime" value="" />
+</label><br>
+<label> Due to:
+  <input type="datetime" value="" />
+</label><br>
+<label>Status:
+  <input type="text" (input)="status=$event.target.value" />
+</label><br>
+<input value="Submit!" type="button" (click) = "submit()" />
