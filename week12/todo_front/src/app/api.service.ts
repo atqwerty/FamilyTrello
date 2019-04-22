@@ -44,6 +44,10 @@ export class ApiService {
   }
 
   deleteTaskList(task_list_id: number): Observable<any>{
-    return this.http.delete(this.baseurl + "/task_list/" + task_list_id)
+    return this.http.delete(this.baseurl + "/task_list/" + task_list_id);
+  }
+
+  deleteTask(task_list_id: string, task_id: number): Observable<any>{
+    return this.http.delete(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id);
   }
 }

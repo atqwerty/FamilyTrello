@@ -41,4 +41,15 @@ export class TaskDetailedComponent implements OnInit {
     )
   }
 
+  delete(task_id){
+    this.api.deleteTask(this.task_list_id, task_id).subscribe(
+      datae => {
+        console.log("data");
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
 }
