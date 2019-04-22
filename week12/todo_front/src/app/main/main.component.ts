@@ -25,7 +25,6 @@ export class MainComponent implements OnInit {
   }
 
   getAllTaskLists = () => {
-
     this.api.getAllTaskLists().subscribe(
       data =>{
         this.task_lists = data;
@@ -39,5 +38,17 @@ export class MainComponent implements OnInit {
 
   create(){
     this.router.navigate(["api/new_task_list"]);
+  }
+
+  delete(task_list_id: number){
+    this.api.deleteTaskList(task_list_id).subscribe(
+      data => {
+        this.router.navigate(["api/task_lists/"]);
+        console.log("here");
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }

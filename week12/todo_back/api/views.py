@@ -39,6 +39,9 @@ class TaskListView(APIView):
     def post(self):
         pass
 
+    def delete(self, request, task_list_id):
+        TaskList.objects.filter(id = task_list_id).delete()
+
 class TaskListViewTasks(APIView):
     def get(self, response, task_list_id):
         task_lists = TaskList.objects.all()

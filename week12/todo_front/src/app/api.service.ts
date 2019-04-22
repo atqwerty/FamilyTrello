@@ -42,4 +42,8 @@ export class ApiService {
   getTaskInfo(task_list_id: string, task_id: string): Observable<any>{
     return this.http.get(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id);
   }
+
+  deleteTaskList(task_list_id: number): Observable<any>{
+    return this.http.delete(this.baseurl + "/task_list/" + task_list_id)
+  }
 }

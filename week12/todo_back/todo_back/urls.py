@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace  = 'rest_framework')),
     path('api/new_task_list/', views.NewTaskList.as_view()),
     path('api/new_task/', views.NewTask.as_view()),
-    path('api/task_lists/<int:task_list_id>', views.TaskListView.as_view()),
+    path('api/task_list/<int:task_list_id>', views.TaskListView.as_view()),
     path('api/task_lists/<int:task_list_id>/tasks', views.TaskListViewTasks.as_view()),
     path('api/task_lists/<int:task_list_id>/tasks/<int:task_id>', views.TaskView.as_view())
 ]
