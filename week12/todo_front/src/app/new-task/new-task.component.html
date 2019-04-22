@@ -3,10 +3,10 @@
   <input type="text" (input)="name=$event.target.value" />
 </label><br>
 <label> Created at:
-  <input type="datetime" value="" />
+  <input type="datetime" (input)="created_at=$event.target.value" />
 </label><br>
 <label> Due to:
-  <input type="datetime" value="" />
+  <input type="datetime" (input)="due_on=$event.target.value" />
 </label><br>
 <label>Status:
   <input type="text" (input)="status=$event.target.value" />

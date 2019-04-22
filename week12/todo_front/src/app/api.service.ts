@@ -19,12 +19,12 @@ export class ApiService {
     return this.http.post(this.baseurl + "/new_task_list/", JSON.stringify(name), httpOptions);
   }
 
-  createTask(name: string, created_at: string, due_to: string, status: string): Observable<any>{
+  createTask(name: string, created_at: string, due_on: string, status: string, task_list_id: number): Observable<any>{
     const httpOptions = {
       headers: this.httpHeaders
     };
-    console.log(created_at);
-    return this.http.post(this.baseurl + "/new_task/", JSON.stringify([name, created_at, due_to, status]), httpOptions);
+    console.log(task_list_id);
+    return this.http.post(this.baseurl + "/new_task/", JSON.stringify([name, created_at, due_on, status, task_list_id]), httpOptions);
   }
 
   getAllTaskLists(): Observable<any>{

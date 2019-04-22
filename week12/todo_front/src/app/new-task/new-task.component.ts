@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-task',
@@ -8,20 +9,28 @@ import { ApiService } from '../api.service';
 })
 export class NewTaskComponent implements OnInit {
 
+  task_list_id: number;
   name: string;
   created_at: string;
-  due_to: string;
+  due_on: string;
   status: string;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      // console.log(params);
+      if (typeof params['task_list_id'] !== 'undefined') {
+        this.task_list_id = params['task_list_id'];
+        console.log(this.task_list_id);
+      }
+    });
   }
 
   submit() {
-    this.api.createTask(this.name, this.created_at, this.due_to, this.status).subscribe(
+    this.api.createTask(this.name, this.created_at, this.due_on, this.status, this.task_list_id).subscribe(
       data => {
-        console.log(data);
+        this.router.navigate(["api/task_lists/" + this.task_list_id]);
       },
       error => {
         console.error(error);

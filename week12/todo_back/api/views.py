@@ -6,6 +6,7 @@ from rest_framework import status, viewsets
 from .models import TaskList, Task
 from .serializers import TaskListSerializer, TaskSerializer
 from django.core.serializers import serialize
+import json
 
 # Create your views here.
 
@@ -16,9 +17,9 @@ class NewTaskList(APIView):
 
 class NewTask(APIView):
     def post(self, request):
-        # data = Task.objects.create(name = request.data.get("name"), 
-            # created_at = request.data["created_at"], due_to = request.data.get("due_to"), status = request.data.get("status"))
-        return Response(request.data)
+        task_list = TaskList.objects.get(id = request.data[4])
+        task = Task.objects.create(name = request.data[0], created_at = request.data[1], due_on = request.data[2], status = request.data[3], task_list = task_list)
+        return Response("task")
 
 class TaskListsView(viewsets.ModelViewSet):
     queryset = TaskList.objects.all()

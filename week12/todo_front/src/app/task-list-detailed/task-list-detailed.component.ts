@@ -53,7 +53,8 @@ export class TaskListDetailedComponent implements OnInit {
     )
   }
 
-  create(){
-    this.router.navigate(["api/new_task/"]);
+  create(task_list_id){
+    // console.log(task_list_id);
+    this.router.navigate(["api/new_task/"], { queryParams: { task_list_id : task_list_id } });
   }
 }
