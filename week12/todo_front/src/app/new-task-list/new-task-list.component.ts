@@ -19,8 +19,6 @@ export class NewTaskListComponent implements OnInit {
   submit() {
     this.api.createTaskList(this.name).subscribe(
        data => {
-         // refresh the list
-        //  console.log(data);
          this.router.navigate(["api/task_lists"]);
        },
        error => {

@@ -27,8 +27,14 @@ export class ApiService {
     return this.http.post(this.baseurl + "/new_task/", JSON.stringify([name, created_at, due_on, status, task_list_id]), httpOptions);
   }
 
-  getAllTaskLists(): Observable<any>{
-    return this.http.get(this.baseurl + "/task_lists/", { headers : this.httpHeaders });
+  getAllTaskLists(token: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
+    };
+    return this.http.get(this.baseurl + "/task_lists", httpOptions);
   }
 
   getTaskList(id: string): Observable<any>{
@@ -49,5 +55,9 @@ export class ApiService {
 
   deleteTask(task_list_id: string, task_id: number): Observable<any>{
     return this.http.delete(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id);
+  }
+
+  logUser(user): Observable<any> {
+    return this.http.post(this.baseurl + "/login", JSON.stringify(user), { headers: this.httpHeaders });
   }
 }

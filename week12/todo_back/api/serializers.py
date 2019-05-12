@@ -1,16 +1,16 @@
 from rest_framework import serializers
 from .models import TaskList, Task
 
-class TaskListSerializer(serializers.Serializer):
+class TaskListSerializer(serializers.ModelSerializer):
 
-    name = serializers.CharField(required=True, allow_blank=False, max_length=200)
+    # name = serializers.CharField(required=True, allow_blank=False, max_length=200)
 
     class Meta:
         model = TaskList
         fields = '__all__'
 
-    def create(self, validated_data):
-        return TaskList.objects.create(**validated_data)
+    # def create(self, validated_data):
+    #     return TaskList.objects.create(**validated_data)
 
     # def destroy(self, request, *args, **kwargs):
     #    user = request.id # deleting user

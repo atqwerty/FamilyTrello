@@ -7,25 +7,48 @@ from .models import TaskList, Task
 from .serializers import TaskListSerializer, TaskSerializer
 from django.core.serializers import serialize
 import json
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import authenticate
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view, permission_classes
+# from rest_framework.permissions import AllowAny
+from rest_framework.status import (
+    HTTP_400_BAD_REQUEST,
+    HTTP_404_NOT_FOUND,
+    HTTP_200_OK
+)
 
 # Create your views here.
 
+
+
 class NewTaskList(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def post(self, request):
         data = TaskList.objects.create(name = request.data)
         return Response("")
 
 class NewTask(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def post(self, request):
         task_list = TaskList.objects.get(id = request.data[4])
         task = Task.objects.create(name = request.data[0], created_at = request.data[1], due_on = request.data[2], status = request.data[3], task_list = task_list)
         return Response("task")
 
-class TaskListsView(viewsets.ModelViewSet):
-    queryset = TaskList.objects.all()
-    serializer_class = TaskListSerializer
+class TaskListsView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        task_lists = TaskList.objects.all()
+        serializer = TaskListSerializer(task_lists, many=True)
+        return Response("what")
 
 class TaskListView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, task_list_id):
         task_lists = TaskList.objects.all()
         serializer = TaskListSerializer(task_lists, many=True)
@@ -41,8 +64,11 @@ class TaskListView(APIView):
 
     def delete(self, request, task_list_id):
         TaskList.objects.filter(id = task_list_id).delete()
+        return Response("test")
 
 class TaskListViewTasks(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, response, task_list_id):
         task_lists = TaskList.objects.all()
         serializer = TaskListSerializer(task_lists, many=True)
@@ -63,6 +89,8 @@ class TaskListViewTasks(APIView):
         return Response(result)
 
 class TaskView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, task_list_id, task_id):
         tasks = Task.objects.all()
         serializer = TaskSerializer(tasks, many=True)
@@ -79,3 +107,4 @@ class TaskView(APIView):
     def delete(self, request, task_list_id, task_id):
         Task.objects.filter(id = task_id).delete()
         return Response("a")
+

@@ -18,17 +18,18 @@ export class MainComponent implements OnInit {
   ngOnInit() {
   }
 
-  task_lists = [{name: "testName"}];
+  task_lists = [];
 
   constructor(private api: ApiService, private router: Router) {
     this.getAllTaskLists();
   }
 
   getAllTaskLists = () => {
-    this.api.getAllTaskLists().subscribe(
+    console.log(localStorage.getItem('asdf'));
+    this.api.getAllTaskLists(localStorage.getItem('asdf')).subscribe(
       data =>{
-        this.task_lists = data;
-        
+        // this.task_lists = data;
+        console.log(data);
       },
       error => {
         console.log(error);
@@ -43,8 +44,12 @@ export class MainComponent implements OnInit {
   delete(task_list_id: number){
     this.api.deleteTaskList(task_list_id).subscribe(
       data => {
-        this.router.navigate(["api/task_lists/"]);
-        console.log("here");
+        console.log('data', data);
+        
+        this.api.getAllTaskLists(localStorage.getItem('asdf')).subscribe(value => {
+          console.log('value', value);
+          this.task_lists = value;
+        });
       },
       error => {
         console.log(error);

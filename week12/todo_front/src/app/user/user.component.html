@@ -1,0 +1,8 @@
+<h2>Log in!</h2>
+<label>User Name: 
+  <input type="text" (input)="username=$event.target.value" />
+</label><br>
+<label> Password:
+  <input type="password" (input)="password=$event.target.value" />
+</label><br>
+<input value="Submit!" type="button" (click) = "submit()" />
