@@ -17,7 +17,7 @@ export class NewTaskListComponent implements OnInit {
   }
 
   submit() {
-    this.api.createTaskList(this.name).subscribe(
+    this.api.createTaskList(localStorage.getItem('asdf'), this.name).subscribe(
        data => {
          this.router.navigate(["api/task_lists"]);
        },

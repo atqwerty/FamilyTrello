@@ -28,8 +28,8 @@ export class MainComponent implements OnInit {
     console.log(localStorage.getItem('asdf'));
     this.api.getAllTaskLists(localStorage.getItem('asdf')).subscribe(
       data =>{
-        // this.task_lists = data;
-        console.log(data);
+        this.task_lists = data;
+        // console.log(data);
       },
       error => {
         console.log(error);
@@ -42,7 +42,7 @@ export class MainComponent implements OnInit {
   }
 
   delete(task_list_id: number){
-    this.api.deleteTaskList(task_list_id).subscribe(
+    this.api.deleteTaskList(localStorage.getItem('asdf'), task_list_id).subscribe(
       data => {
         console.log('data', data);
         

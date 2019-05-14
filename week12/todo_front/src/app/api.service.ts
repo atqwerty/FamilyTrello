@@ -12,18 +12,24 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  createTaskList(name: string): Observable<any>{
-    const httpOptions = {
-      headers: this.httpHeaders
+  createTaskList(token: string, name: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
     };
     return this.http.post(this.baseurl + "/new_task_list/", JSON.stringify(name), httpOptions);
   }
 
-  createTask(name: string, created_at: string, due_on: string, status: string, task_list_id: number): Observable<any>{
-    const httpOptions = {
-      headers: this.httpHeaders
+  createTask(token: string, name: string, created_at: string, due_on: string, status: string, task_list_id: number): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
     };
-    console.log(task_list_id);
+    // console.log(task_list_id);
     return this.http.post(this.baseurl + "/new_task/", JSON.stringify([name, created_at, due_on, status, task_list_id]), httpOptions);
   }
 
@@ -49,8 +55,14 @@ export class ApiService {
     return this.http.get(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id);
   }
 
-  deleteTaskList(task_list_id: number): Observable<any>{
-    return this.http.delete(this.baseurl + "/task_list/" + task_list_id);
+  deleteTaskList(token: string, task_list_id: number): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
+    };
+    return this.http.delete(this.baseurl + "/task_list/" + task_list_id, httpOptions);
   }
 
   deleteTask(task_list_id: string, task_id: number): Observable<any>{

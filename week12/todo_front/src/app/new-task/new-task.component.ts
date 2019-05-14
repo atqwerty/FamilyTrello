@@ -28,7 +28,7 @@ export class NewTaskComponent implements OnInit {
 
   submit() {
     console.log(this.task_list_id);
-    this.api.createTask(this.name, this.created_at, this.due_on, this.status, this.task_list_id).subscribe(
+    this.api.createTask(localStorage.getItem('asdf'), this.name, this.created_at, this.due_on, this.status, this.task_list_id).subscribe(
       data => {
         this.router.navigate(["api/task_lists/" + this.task_list_id]);
       },
