@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
           'asdf',
           data['token']
         );
-        this.router.navigate(["api/task_lists"]);
+        this.router.navigate(["api/family"]);
       },
       error => {
         console.log(error);

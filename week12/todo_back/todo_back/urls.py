@@ -23,21 +23,22 @@ from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter()
-router.register(r'api/task_lists', views.TaskListsView, basename='TaskLists')
-# router.register(r'api/task_list/<int:task_list_id>', views.TaskListView, basename="TaskList")
+router.register(r'api/task_lists', views.BoardsView, basename='Boards')
+# router.register(r'api/task_list/<int:task_list_id>', views.BoardView, basename="Board")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # url(r'^', include(router.urls)),
     # url(r'^api-auth/', include('rest_framework.urls', namespace  = 'rest_framework')),
-    path('api/new_task_list/', views.NewTaskList.as_view()),
+    path('api/new_task_list/', views.NewBoard.as_view()),
     path('api/new_task/', views.NewTask.as_view()),
-    path('api/task_lists', views.TaskListsView.as_view()),
-    path('api/task_list/<int:task_list_id>', views.TaskListView.as_view()),
-    path('api/task_lists/<int:task_list_id>/tasks', views.TaskListViewTasks.as_view()),
+    path('api/task_lists', views.BoardsView.as_view()),
+    path('api/task_lists/<int:task_list_id>', views.BoardView.as_view()),
+    path('api/task_list/<int:task_list_id>/tasks', views.BoardViewTasks.as_view()),
     path('api/task_lists/<int:task_list_id>/tasks/<int:task_id>', views.TaskView.as_view()),
     # path('api/login', test.login),
     path('api/login', obtain_auth_token),
+    path('api/family', views.FamilyView.as_view()),
     # path('api/sampleapi', test.sample_api)
 ]
 

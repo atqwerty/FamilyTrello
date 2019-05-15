@@ -10,6 +10,7 @@ import { ApiService } from '../api.service';
 export class NewTaskListComponent implements OnInit {
 
   name: string;
+  familyId: string;
 
   constructor(private api: ApiService, private router: Router) { }
   
@@ -19,7 +20,7 @@ export class NewTaskListComponent implements OnInit {
   submit() {
     this.api.createTaskList(localStorage.getItem('asdf'), this.name).subscribe(
        data => {
-         this.router.navigate(["api/task_lists"]);
+         this.router.navigate(["api/family"]);
        },
        error => {
          console.error(error);

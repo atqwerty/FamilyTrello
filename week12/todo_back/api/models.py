@@ -2,8 +2,12 @@ from django.db import models
 
 # Create your models here.
 
-class TaskList(models.Model):
+class Family(models.Model):
+    name = models.CharField(max_length=50)
+
+class Board(models.Model):
     name = models.CharField(max_length = 200)
+    board = models.ForeignKey(Family, on_delete=models.CASCADE, default = int(1))
 
 class Task(models.Model):
     name = models.CharField(max_length = 200)
@@ -12,4 +16,4 @@ class Task(models.Model):
     created_at = models.CharField(max_length = 200)
     due_on = models.CharField(max_length = 200)
     status = models.CharField(max_length = 200)
-    task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE)
+    task_list = models.ForeignKey(Board, on_delete=models.CASCADE)

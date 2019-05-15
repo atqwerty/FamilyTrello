@@ -10,6 +10,8 @@ import { TaskDetailedComponent } from './task-detailed/task-detailed.component';
 import { NewTaskListComponent } from './new-task-list/new-task-list.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { UserComponent } from './user/user.component';
+import { FamilyComponent } from './family/family.component';
+import { FamilyDetailedComponent } from './family-detailed/family-detailed.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { UserComponent } from './user/user.component';
     TaskDetailedComponent,
     NewTaskListComponent,
     NewTaskComponent,
-    UserComponent
+    UserComponent,
+    FamilyComponent,
+    FamilyDetailedComponent
   ],
   imports: [
     BrowserModule,

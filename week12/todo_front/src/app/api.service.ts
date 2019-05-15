@@ -12,6 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+
   createTaskList(token: string, name: string): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
@@ -71,5 +72,25 @@ export class ApiService {
 
   logUser(user): Observable<any> {
     return this.http.post(this.baseurl + "/login", JSON.stringify(user), { headers: this.httpHeaders });
+  }
+
+  createFamily(token: string, name: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
+    };
+    return this.http.post(this.baseurl + '/family', JSON.stringify(name), httpOptions);
+  }
+
+  getFamily(token: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
+    };
+    return this.http.get(this.baseurl + "/family", httpOptions);
   }
 }

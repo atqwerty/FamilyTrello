@@ -7,13 +7,18 @@ import { TaskDetailedComponent } from './task-detailed/task-detailed.component';
 import { NewTaskListComponent } from './new-task-list/new-task-list.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { UserComponent } from './user/user.component';
+import { FamilyComponent } from './family/family.component';
+import { FamilyDetailedComponent } from './family-detailed/family-detailed.component';
 
 const routes: Routes = [
   { path: 'api/login', component: UserComponent, pathMatch: 'full'},
   { path: 'api/new_task_list', component: NewTaskListComponent, pathMatch: 'full' },
   { path: 'api/new_task', component: NewTaskComponent, pathMatch: 'full' },
-  { path: 'api/task_lists', component: MainComponent },
+  // { path: 'api/task_lists', component: MainComponent },
   { path: 'api/task_lists/:id', component: TaskListDetailedComponent, pathMatch: 'full' },
+  { path: 'api/family', component: MainComponent, pathMatch: 'full'},
+  { path: 'api/family/:id', component: FamilyDetailedComponent, pathMatch: 'full'},
+  { path: 'api/new_family', component: FamilyComponent, pathMatch: 'full'},
   // { path: 'api/task_lists/:id/tasks', component: TaskListDetailedComponent, pathMatch: 'full'},
   { path: 'api/task_lists/:task_lists_id/tasks/:task_id', component: TaskDetailedComponent, pathMatch: 'full' },
   { path: '', component: AppComponent }

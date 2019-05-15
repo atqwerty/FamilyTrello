@@ -9,26 +9,22 @@ import {Router} from '@angular/router';
   providers: [ApiService]
 })
 
-// export interface ITaskList {
-//   id: number;
-//   name: string;
-// }
 export class MainComponent implements OnInit {
 
   ngOnInit() {
   }
 
-  task_lists = [];
+  families = [];
 
   constructor(private api: ApiService, private router: Router) {
-    this.getAllTaskLists();
+    this.getAllFamilies();
   }
 
-  getAllTaskLists = () => {
+  getAllFamilies = () => {
     console.log(localStorage.getItem('asdf'));
-    this.api.getAllTaskLists(localStorage.getItem('asdf')).subscribe(
+    this.api.getFamily(localStorage.getItem('asdf')).subscribe(
       data =>{
-        this.task_lists = data;
+        this.families = data;
         // console.log(data);
       },
       error => {
@@ -38,22 +34,22 @@ export class MainComponent implements OnInit {
   }
 
   create(){
-    this.router.navigate(["api/new_task_list"]);
+    this.router.navigate(["api/new_family"]);
   }
 
-  delete(task_list_id: number){
-    this.api.deleteTaskList(localStorage.getItem('asdf'), task_list_id).subscribe(
-      data => {
-        console.log('data', data);
+  // delete(task_list_id: number){
+  //   this.api.deleteTaskList(localStorage.getItem('asdf'), task_list_id).subscribe(
+  //     data => {
+  //       console.log('data', data);
         
-        this.api.getAllTaskLists(localStorage.getItem('asdf')).subscribe(value => {
-          console.log('value', value);
-          this.task_lists = value;
-        });
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
+  //       this.api.getAllTaskLists(localStorage.getItem('asdf')).subscribe(value => {
+  //         console.log('value', value);
+  //         this.families = value;
+  //       });
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 }
