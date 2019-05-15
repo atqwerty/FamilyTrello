@@ -25,7 +25,6 @@ export class MainComponent implements OnInit {
     this.api.getFamily(localStorage.getItem('asdf')).subscribe(
       data =>{
         this.families = data;
-        // console.log(data);
       },
       error => {
         console.log(error);
@@ -37,19 +36,19 @@ export class MainComponent implements OnInit {
     this.router.navigate(["api/new_family"]);
   }
 
-  // delete(task_list_id: number){
-  //   this.api.deleteTaskList(localStorage.getItem('asdf'), task_list_id).subscribe(
-  //     data => {
-  //       console.log('data', data);
-        
-  //       this.api.getAllTaskLists(localStorage.getItem('asdf')).subscribe(value => {
-  //         console.log('value', value);
-  //         this.families = value;
-  //       });
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   )
-  // }
+  delete = (family_id: string) => {
+    this.api.deleteFamily(localStorage.getItem('asdf'), family_id).subscribe(
+      data => {
+        console.log('data', data);
+        // this.router.navigate(['api/family']);
+        this.api.getFamily(localStorage.getItem('asdf')).subscribe(value => {
+          console.log('value', value);
+          this.families = value;
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 }

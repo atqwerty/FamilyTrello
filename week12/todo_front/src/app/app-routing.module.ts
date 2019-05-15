@@ -12,7 +12,7 @@ import { FamilyDetailedComponent } from './family-detailed/family-detailed.compo
 
 const routes: Routes = [
   { path: 'api/login', component: UserComponent, pathMatch: 'full'},
-  { path: 'api/new_task_list', component: NewTaskListComponent, pathMatch: 'full' },
+  { path: 'api/family/:familyId/new_task_list', component: NewTaskListComponent, pathMatch: 'full' },
   { path: 'api/new_task', component: NewTaskComponent, pathMatch: 'full' },
   // { path: 'api/task_lists', component: MainComponent },
   { path: 'api/task_lists/:id', component: TaskListDetailedComponent, pathMatch: 'full' },

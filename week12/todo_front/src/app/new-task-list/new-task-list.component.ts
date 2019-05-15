@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -11,16 +11,26 @@ export class NewTaskListComponent implements OnInit {
 
   name: string;
   familyId: string;
+  boards = [];
 
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute) { }
   
-  ngOnInit() {
-  }
+  ngOnInit() {this.activatedRoute.params.subscribe(params => {
+    // console.log(params);
+    if (typeof params['familyId'] !== 'undefined') {
+      this.familyId = params['familyId'];
+    } else {
+      console.log("anothers")
+    }
+  });
+}
 
   submit() {
-    this.api.createTaskList(localStorage.getItem('asdf'), this.name).subscribe(
+    this.api.createTaskList(localStorage.getItem('asdf'), this.name, this.familyId).subscribe(
        data => {
-         this.router.navigate(["api/family"]);
+        //  console.log(data);
+        // this.boards = data;
+        //  this.router.navigate(["api/family"]);
        },
        error => {
          console.error(error);

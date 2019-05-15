@@ -13,14 +13,15 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
 
-  createTaskList(token: string, name: string): Observable<any>{
+  createTaskList(token: string, name: string, family_id: string): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Token ' + token
       })
     };
-    return this.http.post(this.baseurl + "/new_task_list/", JSON.stringify(name), httpOptions);
+    // console.log(family_id);
+    return this.http.post(this.baseurl + "/" + family_id + "/new_task_list/", JSON.stringify(name), httpOptions);
   }
 
   createTask(token: string, name: string, created_at: string, due_on: string, status: string, task_list_id: number): Observable<any>{
@@ -34,14 +35,14 @@ export class ApiService {
     return this.http.post(this.baseurl + "/new_task/", JSON.stringify([name, created_at, due_on, status, task_list_id]), httpOptions);
   }
 
-  getAllTaskLists(token: string): Observable<any>{
+  getAllTaskLists(token: string, family_id: string): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Token ' + token
       })
     };
-    return this.http.get(this.baseurl + "/task_lists", httpOptions);
+    return this.http.get(this.baseurl + "/" + family_id + "/task_lists", httpOptions);
   }
 
   getTaskList(id: string): Observable<any>{
@@ -92,5 +93,15 @@ export class ApiService {
       })
     };
     return this.http.get(this.baseurl + "/family", httpOptions);
+  }
+
+  deleteFamily(token: string, family_id: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
+    };
+    return this.http.delete(this.baseurl + "/" + family_id + "/task_lists", httpOptions);
   }
 }

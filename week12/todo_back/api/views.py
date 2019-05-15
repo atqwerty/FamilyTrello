@@ -27,8 +27,8 @@ class NewBoard(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        data = Board.objects.create(name = request.data)
-        return Response("")
+        # data = Board.objects.create(name = request.data, board_id = reques)
+        return Response(request.data)
 
 class NewTask(APIView):
     permission_classes = (IsAuthenticated,)
@@ -41,10 +41,23 @@ class NewTask(APIView):
 class BoardsView(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request, family_id):
+        data = Board.objects.create(name = request.data, board_id = family_id)
+        return Response("Task List Created")
+
+    def get(self, request, family_id):
         boards = Board.objects.all()
         serializer = BoardSerializer(boards, many=True)
-        return Response()
+        result = []
+
+        for board in serializer.data:
+            if family_id == board['board']:
+                result.append(board)
+        return Response(result)
+
+    def delete(self, request, family_id):
+        Family.objects.filter(id = family_id).delete()
+        return Response("Family deleted")
 
 class BoardView(APIView):
     permission_classes = (IsAuthenticated,)
