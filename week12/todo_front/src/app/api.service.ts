@@ -45,26 +45,38 @@ export class ApiService {
     return this.http.get(this.baseurl + "/" + family_id + "/task_lists", httpOptions);
   }
 
-  getTaskList(id: string): Observable<any>{
-    return this.http.get(this.baseurl + "/task_lists/" + id);
-  }
-
-  getTasks(id: string): Observable<any>{
-    return this.http.get(this.baseurl + "/task_lists/" + id + "/tasks");
-  }
-
-  getTaskInfo(task_list_id: string, task_id: string): Observable<any>{
-    return this.http.get(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id);
-  }
-
-  deleteTaskList(token: string, task_list_id: number): Observable<any>{
+  getTaskList(token: string, id: string, family_id: string): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Token ' + token
       })
     };
-    return this.http.delete(this.baseurl + "/task_list/" + task_list_id, httpOptions);
+    return this.http.get(this.baseurl + "/" + family_id + "/task_lists/" + id, httpOptions);
+  }
+
+  getTasks(token: string, id: string, family_id: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
+    };
+    return this.http.get(this.baseurl + "/" + family_id + "/task_lists/" + id + "/tasks", httpOptions);
+  }
+
+  getTaskInfo(task_list_id: string, task_id: string): Observable<any>{
+    return this.http.get(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id);
+  }
+
+  deleteTaskList(token: string, familyId: string,  board_id: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
+    };
+    return this.http.delete(this.baseurl + "/" + familyId + "/task_lists/" + board_id, httpOptions);
   }
 
   deleteTask(task_list_id: string, task_id: number): Observable<any>{
@@ -102,6 +114,6 @@ export class ApiService {
         'Authorization': 'Token ' + token
       })
     };
-    return this.http.delete(this.baseurl + "/" + family_id + "/task_lists", httpOptions);
+    return this.http.delete(this.baseurl + "/family/" + family_id, httpOptions);
   }
 }

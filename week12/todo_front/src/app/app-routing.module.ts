@@ -13,15 +13,13 @@ import { FamilyDetailedComponent } from './family-detailed/family-detailed.compo
 const routes: Routes = [
   { path: 'api/login', component: UserComponent, pathMatch: 'full'},
   { path: 'api/family/:familyId/new_task_list', component: NewTaskListComponent, pathMatch: 'full' },
-  { path: 'api/new_task', component: NewTaskComponent, pathMatch: 'full' },
-  // { path: 'api/task_lists', component: MainComponent },
-  { path: 'api/task_lists/:id', component: TaskListDetailedComponent, pathMatch: 'full' },
+  { path: 'api/family/:family_id/task_lists/:task_list_id/new_task', component: NewTaskComponent, pathMatch: 'full' },
+  { path: 'api/family/:family_id/task_lists/:id', component: TaskListDetailedComponent, pathMatch: 'full' },
   { path: 'api/family', component: MainComponent, pathMatch: 'full'},
   { path: 'api/family/:id', component: FamilyDetailedComponent, pathMatch: 'full'},
   { path: 'api/new_family', component: FamilyComponent, pathMatch: 'full'},
-  // { path: 'api/task_lists/:id/tasks', component: TaskListDetailedComponent, pathMatch: 'full'},
-  { path: 'api/task_lists/:task_lists_id/tasks/:task_id', component: TaskDetailedComponent, pathMatch: 'full' },
-  { path: '', component: AppComponent }
+  { path: 'api/family/:family_id/task_lists/:task_lists_id/tasks/', component: TaskDetailedComponent, pathMatch: 'full' },
+  { path: '', component: AppComponent },
 ];
 
 @NgModule({

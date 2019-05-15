@@ -34,8 +34,8 @@ class NewTask(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        board = Board.objects.get(id = request.data[4])
-        task = Task.objects.create(name = request.data[0], created_at = request.data[1], due_on = request.data[2], status = request.data[3], board = board)
+        boardd = Board.objects.get(id = request.data[4])
+        task = Task.objects.create(name = request.data[0], created_at = request.data[1], due_on = request.data[2], status = request.data[3], task_list_id = request.data[4])
         return Response("task")
 
 class BoardsView(APIView):
@@ -55,8 +55,8 @@ class BoardsView(APIView):
                 result.append(board)
         return Response(result)
 
-    def delete(self, request, family_id):
-        Family.objects.filter(id = family_id).delete()
+    def delete(self, request, board_id, family_id):
+        Board.objects.filter(id = board_id).delete()
         return Response("Family deleted")
 
 class BoardView(APIView):
@@ -82,7 +82,7 @@ class BoardView(APIView):
 class BoardViewTasks(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self, response, board_id):
+    def get(self, response, board_id, family_id):
         boards = Board.objects.all()
         serializer = BoardSerializer(boards, many=True)
         holder = ''
@@ -96,7 +96,7 @@ class BoardViewTasks(APIView):
                 holder = board
 
         for task in tasks_serializer.data:
-            if holder['id'] == task['board']:
+            if holder['id'] == task['task_list']:
                 result.append(task)
         
         return Response(result)
@@ -132,3 +132,7 @@ class FamilyView(APIView):
         family = Family.objects.all()
         serializer = FamilySerializer(family, many=True)
         return Response(serializer.data)
+
+    def delete(self, request, family_id):
+        Family.objects.filter(id = family_id).delete()
+        return Response("test")

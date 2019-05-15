@@ -45,4 +45,15 @@ export class FamilyDetailedComponent implements OnInit {
     this.router.navigate(['api/family/' + this.familyId + '/new_task_list']);
   }
 
+  delete = (task_list_id: string) => {
+    this.api.deleteTaskList(localStorage.getItem('asdf'), this.familyId,  task_list_id).subscribe(
+      data => {
+        this.router.navigate(['api/family/' + this.familyId]);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
 }

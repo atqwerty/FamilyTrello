@@ -33,12 +33,14 @@ urlpatterns = [
     path('api/<int:family_id>/new_task_list/', views.BoardsView.as_view()),
     path('api/new_task/', views.NewTask.as_view()),
     path('api/<int:family_id>/task_lists', views.BoardsView.as_view()),
+    path('api/<int:family_id>/task_lists/<int:board_id>/tasks', views.BoardViewTasks.as_view()),
     path('api/task_lists/<int:task_list_id>', views.BoardView.as_view()),
     path('api/task_list/<int:task_list_id>/tasks', views.BoardViewTasks.as_view()),
     path('api/task_lists/<int:task_list_id>/tasks/<int:task_id>', views.TaskView.as_view()),
     # path('api/login', test.login),
     path('api/login', obtain_auth_token),
     path('api/family', views.FamilyView.as_view()),
+    path('api/family/<int:family_id>', views.FamilyView.as_view()),
     # path('api/sampleapi', test.sample_api)
 ]
 

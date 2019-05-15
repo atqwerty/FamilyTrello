@@ -19,18 +19,19 @@ export class NewTaskComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
+      // console.log(params);
       if (typeof params['task_list_id'] !== 'undefined') {
         this.task_list_id = params['task_list_id'];
-        
+        console.log(params);
       }
     });
   }
 
   submit() {
-    console.log(this.task_list_id);
+    // console.log(this.task_list_id);
     this.api.createTask(localStorage.getItem('asdf'), this.name, this.created_at, this.due_on, this.status, this.task_list_id).subscribe(
       data => {
-        this.router.navigate(["api/task_lists/" + this.task_list_id]);
+        // this.router.navigate(["api/family/" +  + "/task_lists/" + this.task_list_id]);
       },
       error => {
         console.error(error);
