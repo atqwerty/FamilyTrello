@@ -38,14 +38,14 @@ export class TaskDetailedComponent implements OnInit {
     )
   }
 
-  delete(task_id){
-    this.api.deleteTask(this.task_list_id, task_id).subscribe(
-      data => {
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
+  // delete(task_id){
+  //   this.api.deleteTask(localStorage.getItem('asdf'), this.task_list_id, task_id).subscribe(
+  //     data => {
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
 }

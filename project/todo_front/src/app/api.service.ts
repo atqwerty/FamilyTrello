@@ -85,8 +85,14 @@ export class ApiService {
     return this.http.delete(this.baseurl + "/task_lists/" + board_id, httpOptions);
   }
 
-  deleteTask(task_list_id: string, task_id: number): Observable<any>{
-    return this.http.delete(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id);
+  deleteTask(token: string, task_list_id: string, task_id: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
+    };
+    return this.http.delete(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id, httpOptions);
   }
 
   logUser(user): Observable<any> {

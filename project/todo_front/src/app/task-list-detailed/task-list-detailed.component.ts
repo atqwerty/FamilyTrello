@@ -41,11 +41,10 @@ export class TaskListDetailedComponent implements OnInit {
   }
 
   getTaskList = (id) => {
-    // console.log(id);
     this.api.getTaskList(localStorage.getItem('asdf'), this.id, this.family_id).subscribe(
       data =>{
         this.task_list = data;
-        this.getTasks(id);
+        this.getTasks(this.id);
       },
       error => {
         console.log(error);
@@ -55,5 +54,16 @@ export class TaskListDetailedComponent implements OnInit {
 
   create(task_list_id){
     this.router.navigate(["api/family/" + this.family_id + "/task_lists/" + this.id + "/new_task"], { queryParams: { task_list_id : this.id, family_id : this.family_id } });
+  }
+
+  delete(task_id){
+    this.api.deleteTask(localStorage.getItem('asdf'), this.id, task_id).subscribe(
+      data => {
+        this.getTasks(this.id);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }
