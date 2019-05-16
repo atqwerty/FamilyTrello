@@ -65,8 +65,14 @@ export class ApiService {
     return this.http.get(this.baseurl + "/" + family_id + "/task_lists/" + id + "/tasks", httpOptions);
   }
 
-  getTaskInfo(task_list_id: string, task_id: string): Observable<any>{
-    return this.http.get(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id);
+  getTaskInfo(token: string, task_list_id: string, task_id: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      })
+    };
+    return this.http.get(this.baseurl + "/task_lists/" + task_list_id + "/tasks/" + task_id, httpOptions);
   }
 
   deleteTaskList(token: string, familyId: string,  board_id: string): Observable<any>{

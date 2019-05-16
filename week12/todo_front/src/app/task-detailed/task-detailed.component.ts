@@ -21,7 +21,7 @@ export class TaskDetailedComponent implements OnInit {
       if (typeof params['task_lists_id'] !== 'undefined') {
         this.task_list_id = params['task_lists_id'];
         this.task_id = params['task_id'];
-        // console.log(this.id);
+        console.log(this.task_id);
       } else {
         // this.id = '';
         console.log("error")
@@ -31,9 +31,10 @@ export class TaskDetailedComponent implements OnInit {
   }
 
   getTaskInfo = (task_list_id, task_id) =>{
-    this.api.getTaskInfo(task_list_id, task_id).subscribe(
+    this.api.getTaskInfo(localStorage.getItem('asdf'), task_list_id, task_id).subscribe(
       data => {
         this.task = data
+        console.log(this.task);
       },
       error => {
         console.log(error);

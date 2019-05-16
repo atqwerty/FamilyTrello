@@ -104,12 +104,12 @@ class BoardViewTasks(APIView):
 class TaskView(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self, request, board_id, task_id):
+    def get(self, request, task_list_id, task_id):
         tasks = Task.objects.all()
         serializer = TaskSerializer(tasks, many=True)
         
         for task in serializer.data:
-            if task_id == task['id'] and board_id == task['board']:
+            if task_id == task['id'] and task_list_id == task['task_list']:
                 return Response(task)
 
         return Response("empty!")
