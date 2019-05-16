@@ -1,9 +1,11 @@
-<h2>Groups Boards:</h2>
-<ul>
-  <li *ngFor="let family of families">
-    <h2 routerLink="{{family.id}}" queryParamsHandling="merge">{{family.name}}</h2>
-    <input value="Delete" type="button" (click)="delete(family.id)"/>
-    <router-outlet></router-outlet>
-  </li>
-</ul>
-<input value="Create Family" type="button" (click) = "create()" />
+<div>
+  <h2>Groups Boards:</h2>
+  <ul>
+    <li *ngFor="let family of families">
+      <h2 routerLink="{{family.id}}" queryParamsHandling="merge">{{family.name}}</h2>
+      <input value="Delete" type="button" (click)="delete(family.id)"/>
+      <router-outlet></router-outlet>
+    </li>
+  </ul>
+  <input value="Create Family" type="button" (click) = "create()" />
+</div>
