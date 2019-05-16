@@ -5,6 +5,11 @@
     <h2>Name: {{task.name}}</h2>
     <h2>Created at: {{task.created_at}}</h2>
     <h2>Due on: {{task.due_on}}</h2>
-    <h2>Status: {{task.status}}</h2>
+    <h2>Status: </h2>
+    <select>
+      <option value="{{task.status}}">{{task.status}}</option>
+      <option value="wip">Work in progress</option>
+      <option value="done">Done</option>
+    </select>
   </li>
 </ul>
