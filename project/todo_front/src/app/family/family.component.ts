@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-family',
@@ -11,7 +12,7 @@ export class FamilyComponent implements OnInit {
   name: string;
   family: any;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.getFamily()
@@ -31,7 +32,7 @@ export class FamilyComponent implements OnInit {
   createFamily = () => {
     this.api.createFamily(localStorage.getItem('asdf'), this.name).subscribe(
       data => {
-        console.log(data);
+        this.router.navigate(['api/family']);
       },
       error => {
         console.log(error);

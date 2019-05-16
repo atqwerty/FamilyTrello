@@ -28,9 +28,7 @@ export class NewTaskListComponent implements OnInit {
   submit() {
     this.api.createTaskList(localStorage.getItem('asdf'), this.name, this.familyId).subscribe(
        data => {
-        //  console.log(data);
-        // this.boards = data;
-        //  this.router.navigate(["api/family"]);
+         this.router.navigate(["api/family/" + this.familyId]);
        },
        error => {
          console.error(error);

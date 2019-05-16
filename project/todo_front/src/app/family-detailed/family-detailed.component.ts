@@ -17,23 +17,19 @@ export class FamilyDetailedComponent implements OnInit {
   }
 
   ngOnInit() {this.activatedRoute.params.subscribe(params => {
-      // console.log(params);
       if (typeof params['id'] !== 'undefined') {
         this.familyId = params['id'];
-        // console.log(this.familyId);
       } else {
-        console.log("s")
+        console.log("error")
       }
     });
     this.getTaskLists();
   }
 
-  // pass family id in order to get designated task lists
   getTaskLists = () => {
     this.api.getAllTaskLists(localStorage.getItem('asdf'), this.familyId).subscribe(
       data => {
         this.task_lists = data;
-        // console.log(data);
       },
       error => {
         console.log(error);
@@ -48,7 +44,7 @@ export class FamilyDetailedComponent implements OnInit {
   delete = (task_list_id: string) => {
     this.api.deleteTaskList(localStorage.getItem('asdf'), this.familyId,  task_list_id).subscribe(
       data => {
-        this.router.navigate(['api/family/' + this.familyId]);
+        this.getTaskLists();
       },
       error => {
         console.log(error);

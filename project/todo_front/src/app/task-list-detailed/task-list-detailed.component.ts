@@ -16,7 +16,6 @@ export class TaskListDetailedComponent implements OnInit {
   
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      // console.log(params);
       if (typeof params['id'] !== 'undefined') {
         this.id = params['id'];
         this.family_id = params['family_id'];
@@ -34,7 +33,6 @@ export class TaskListDetailedComponent implements OnInit {
     this.api.getTasks(localStorage.getItem('asdf'), this.id, this.family_id).subscribe(
       data => {
         this.tasks = data
-        console.log(data);
       },
       error => {
         console.log(error);
@@ -56,6 +54,6 @@ export class TaskListDetailedComponent implements OnInit {
   }
 
   create(task_list_id){
-    this.router.navigate(["api/family/" + this.family_id + "/task_lists/" + this.id + "/new_task"], { queryParams: { task_list_id : this.id } });
+    this.router.navigate(["api/family/" + this.family_id + "/task_lists/" + this.id + "/new_task"], { queryParams: { task_list_id : this.id, family_id : this.family_id } });
   }
 }

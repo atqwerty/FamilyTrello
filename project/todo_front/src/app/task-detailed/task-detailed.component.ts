@@ -17,13 +17,10 @@ export class TaskDetailedComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      // console.log(params);
       if (typeof params['task_lists_id'] !== 'undefined') {
         this.task_list_id = params['task_lists_id'];
         this.task_id = params['task_id'];
-        console.log(this.task_id);
       } else {
-        // this.id = '';
         console.log("error")
       }
     });
@@ -34,7 +31,6 @@ export class TaskDetailedComponent implements OnInit {
     this.api.getTaskInfo(localStorage.getItem('asdf'), task_list_id, task_id).subscribe(
       data => {
         this.task = data
-        console.log(this.task);
       },
       error => {
         console.log(error);
@@ -44,8 +40,7 @@ export class TaskDetailedComponent implements OnInit {
 
   delete(task_id){
     this.api.deleteTask(this.task_list_id, task_id).subscribe(
-      datae => {
-        console.log("data");
+      data => {
       },
       error => {
         console.log(error);

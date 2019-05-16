@@ -21,7 +21,6 @@ export class MainComponent implements OnInit {
   }
 
   getAllFamilies = () => {
-    console.log(localStorage.getItem('asdf'));
     this.api.getFamily(localStorage.getItem('asdf')).subscribe(
       data =>{
         this.families = data;
@@ -39,10 +38,7 @@ export class MainComponent implements OnInit {
   delete = (family_id: string) => {
     this.api.deleteFamily(localStorage.getItem('asdf'), family_id).subscribe(
       data => {
-        console.log('data', data);
-        // this.router.navigate(['api/family']);
         this.api.getFamily(localStorage.getItem('asdf')).subscribe(value => {
-          console.log('value', value);
           this.families = value;
         });
       },

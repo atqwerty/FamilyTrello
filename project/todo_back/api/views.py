@@ -75,9 +75,9 @@ class BoardView(APIView):
     def post(self):
         pass
 
-    def delete(self, request, board_id):
-        Board.objects.filter(id = board_id).delete()
-        return Response("test")
+    def delete(self, request, task_list_id):
+        Board.objects.filter(id = task_list_id).delete()
+        return Response("Task List Deleted")
 
 class BoardViewTasks(APIView):
     permission_classes = (IsAuthenticated,)

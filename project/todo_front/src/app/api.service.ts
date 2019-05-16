@@ -24,7 +24,7 @@ export class ApiService {
     return this.http.post(this.baseurl + "/" + family_id + "/new_task_list/", JSON.stringify(name), httpOptions);
   }
 
-  createTask(token: string, name: string, created_at: string, due_on: string, status: string, task_list_id: number): Observable<any>{
+  createTask(token: string, name: string, created_at: string, due_on: string, status: string, task_list_id: string): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ export class ApiService {
         'Authorization': 'Token ' + token
       })
     };
-    return this.http.delete(this.baseurl + "/" + familyId + "/task_lists/" + board_id, httpOptions);
+    return this.http.delete(this.baseurl + "/task_lists/" + board_id, httpOptions);
   }
 
   deleteTask(task_list_id: string, task_id: number): Observable<any>{
